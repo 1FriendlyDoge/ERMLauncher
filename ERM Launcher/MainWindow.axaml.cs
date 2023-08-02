@@ -175,8 +175,6 @@ public partial class MainWindow : Window
                             CreateNoWindow = true,
                             UseShellExecute = true
                         };
-                        
-                        File.SetAttributes();
 
                         using (Process process = new Process())
                         {
