@@ -178,7 +178,6 @@ public partial class MainWindow : Window
                         {
                             process.StartInfo = startInfo;
                             process.Start();
-                            
                             await process.WaitForExitAsync();
                             await process.StandardOutput.ReadToEndAsync();
                         }
