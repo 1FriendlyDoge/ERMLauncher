@@ -57,8 +57,6 @@ public partial class MainWindow : Window
         
         string filePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         string ermDir = Path.Join(filePath, "ERM");
-        
-        string debug = $"-c \" chmod +x  '{Path.Join(ermDir, "ERM Desktop.app", "Contents", "MacOS", "ERM Desktop")}'\" ";
 
         DateTime lastChanged = DateTimeOffset.FromUnixTimeSeconds(0).DateTime;
         
@@ -174,7 +172,7 @@ public partial class MainWindow : Window
                         ProcessStartInfo startInfo = new ProcessStartInfo() 
                         {
                             FileName = "/bin/bash",
-                            Arguments = $"-c \" chmod +x  '{Path.Join(ermDir, "ERM Desktop.app", "Contents", "MacOS", "ERM Desktop")}' \" ",
+                            Arguments = $"-c chmod +x '{Path.Join(ermDir, "ERM Desktop.app", "Contents", "MacOS", "ERM Desktop")}'",
                             CreateNoWindow = false,
                             UseShellExecute = false
                         };
@@ -214,7 +212,7 @@ public partial class MainWindow : Window
             }
             else if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
-                if(File.Exists(Path.Join(parentDir, "ERM Desktop")))
+                if(File.Exists(Path.Join(parentDir, "ERM Desktop.app")))
                 {
                     Process.Start(new ProcessStartInfo(Path.Join(parentDir, "ERM Desktop.app"))
                         { UseShellExecute = true });
