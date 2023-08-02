@@ -75,7 +75,7 @@ public partial class MainWindow : Window
         
         if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
         {
-            if(File.Exists(Path.Join(ermDir, "ERM Desktop")))
+            if(File.Exists(Path.Join(ermDir, "ERM Desktop.app")))
             {
                 lastChanged = File.GetLastWriteTimeUtc(Path.Join(ermDir, "ERM Desktop.app"));
             }
