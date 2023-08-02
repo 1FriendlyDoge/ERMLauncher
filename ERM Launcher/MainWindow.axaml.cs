@@ -172,7 +172,7 @@ public partial class MainWindow : Window
                         ProcessStartInfo startInfo = new ProcessStartInfo() 
                         {
                             FileName = "/bin/bash",
-                            Arguments = $"-c \" chmod +x  {Path.Join(ermDir, "ERM Desktop")}\" ",
+                            Arguments = $"-c \" chmod +x  '{Path.Join(ermDir, "ERM Desktop.app", "Contents", "MacOS", "ERM Desktop")}'\" ",
                             CreateNoWindow = true
                         };
 
@@ -213,7 +213,7 @@ public partial class MainWindow : Window
             {
                 if(File.Exists(Path.Join(parentDir, "ERM Desktop")))
                 {
-                    Process.Start(new ProcessStartInfo(Path.Join(parentDir, "ERM Desktop"))
+                    Process.Start(new ProcessStartInfo(Path.Join(parentDir, "ERM Desktop.app"))
                         { UseShellExecute = true });
                 }
             }
