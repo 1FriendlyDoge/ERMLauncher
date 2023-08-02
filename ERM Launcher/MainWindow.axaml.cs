@@ -169,12 +169,8 @@ public partial class MainWindow : Window
                     
                     if(File.Exists(Path.Join(ermDir, "ERM Desktop.app")))
                     {
-                        ProcessStartInfo startInfo = new ProcessStartInfo("chmod") 
-                        {
-                            Arguments = $"+x \"{Path.Join(ermDir, "ERM Desktop.app", "Contents", "MacOS", "ERM Desktop")}\"",
-                            CreateNoWindow = true,
-                            UseShellExecute = true
-                        };
+                        ProcessStartInfo startInfo = new ProcessStartInfo("chmod",
+                            $"+x \"{Path.Join(ermDir, "ERM Desktop.app", "Contents", "MacOS", "ERM Desktop")}\"");
 
                         using (Process process = new Process())
                         {
