@@ -167,12 +167,12 @@ public partial class MainWindow : Window
                         System.IO.Compression.ZipFile.ExtractToDirectory(Path.Join(ermDir, "ERM.Desktop.MacOS.zip"), ermDir, true);
                     });
                     
-                    if(File.Exists(Path.Join(ermDir, "ERM Desktop")))
+                    if(File.Exists(Path.Join(ermDir, "ERM Desktop.app")))
                     {
                         ProcessStartInfo startInfo = new ProcessStartInfo() 
                         {
                             FileName = "/bin/bash",
-                            Arguments = $"-c \" chmod +x  \'{Path.Join(ermDir, "ERM Desktop.app", "Contents", "MacOS", "ERM Desktop")}\'\" ",
+                            Arguments = $"-c \" chmod +x  '{Path.Join(ermDir, "ERM Desktop.app", "Contents", "MacOS", "ERM Desktop")}'\" ",
                             CreateNoWindow = true
                         };
 
