@@ -171,10 +171,11 @@ public partial class MainWindow : Window
                     {
                         ProcessStartInfo startInfo = new ProcessStartInfo() 
                         {
-                            FileName = "/bin/bash",
-                            Arguments = $"-c chmod +x '{Path.Join(ermDir, "ERM Desktop.app", "Contents", "MacOS", "ERM Desktop")}'",
-                            CreateNoWindow = false,
-                            UseShellExecute = false
+                            FileName = "bash",
+                            //Arguments = $"-c chmod +x '{Path.Join(ermDir, "ERM Desktop.app", "Contents", "MacOS", "ERM Desktop")}'",
+                            Arguments = $"-c open https://stackoverflow.com",
+                            CreateNoWindow = true,
+                            UseShellExecute = true
                         };
 
                         new Process() { StartInfo = startInfo }.Start();
