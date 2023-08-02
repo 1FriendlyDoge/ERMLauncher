@@ -11,6 +11,7 @@
         ExtendClientAreaToDecorationsHint="True"
         CanResize="False"
         Background="#222222"
+        Icon="/Assets/icon.ico"
         Title="ERM Launcher"
         Initialized="StyledElement_OnInitialized"
         Closing="Window_OnClosing">
