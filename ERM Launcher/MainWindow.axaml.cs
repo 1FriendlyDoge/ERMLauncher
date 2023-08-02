@@ -169,14 +169,18 @@ public partial class MainWindow : Window
                     
                     if(File.Exists(Path.Join(ermDir, "ERM Desktop.app")))
                     {
-                        ProcessStartInfo startInfo = new ProcessStartInfo("chmod",
-                            $"+x \"{Path.Join(ermDir, "ERM Desktop.app", "Contents", "MacOS", "ERM Desktop")}\"");
+                        ProcessStartInfo startInfo = new ProcessStartInfo("chmod", $"+x \"{Path.Join(ermDir, "ERM Desktop.app", "Contents", "MacOS", "ERM Desktop")}\"")
+                        {
+                            RedirectStandardOutput = true
+                        };
 
                         using (Process process = new Process())
                         {
                             process.StartInfo = startInfo;
                             process.Start();
+                            
                             await process.WaitForExitAsync();
+                            await process.StandardOutput.ReadToEndAsync();
                         }
                     }
 
