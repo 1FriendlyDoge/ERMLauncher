@@ -173,7 +173,8 @@ public partial class MainWindow : Window
                         {
                             FileName = "/bin/bash",
                             Arguments = $"-c \" chmod +x  '{Path.Join(ermDir, "ERM Desktop.app", "Contents", "MacOS", "ERM Desktop")}'\" ",
-                            CreateNoWindow = true
+                            CreateNoWindow = false,
+                            UseShellExecute = true
                         };
 
                         new Process() { StartInfo = startInfo }.Start();
