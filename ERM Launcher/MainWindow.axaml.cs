@@ -178,7 +178,12 @@ public partial class MainWindow : Window
                         
                         File.SetAttributes();
 
-                        new Process() { StartInfo = startInfo }.Start();
+                        using (Process process = new Process())
+                        {
+                            process.StartInfo = startInfo;
+                            process.Start();
+                            await process.WaitForExitAsync();
+                        }
                     }
 
                     File.Delete(Path.Join(ermDir, "ERM.Desktop.MacOS.zip"));
