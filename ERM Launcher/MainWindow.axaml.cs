@@ -208,7 +208,12 @@ public partial class MainWindow : Window
         {
             if(File.Exists(Path.Join(parentDir, "ERM Desktop.app")))
             {
-                Process.Start(new ProcessStartInfo(Path.Join(parentDir, "ERM Desktop.app")));
+                ProcessStartInfo startInfo = new ProcessStartInfo("start", $"-a {Path.Join(parentDir, "ERM Desktop.app")}");
+
+                Process process = new Process();
+                process.StartInfo = startInfo;
+                process.Start();
+                process.WaitForExit();
             }
         }
     }
