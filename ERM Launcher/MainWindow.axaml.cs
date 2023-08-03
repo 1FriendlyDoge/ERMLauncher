@@ -29,8 +29,6 @@ public partial class MainWindow : Window
         HttpClientHandler handler = new HttpClientHandler() { AllowAutoRedirect = true };
         ProgressMessageHandler progress = new ProgressMessageHandler(handler);
 
-        Console.WriteLine("Test");
-        
         progress.HttpReceiveProgress += (_, args) =>
         {
             double progressPercentage = args.ProgressPercentage;
@@ -138,7 +136,6 @@ public partial class MainWindow : Window
         }
         else if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
         {
-            Console.WriteLine("correct platform... DEBUG");
             Asset? asset = githubRelease.assets.Find(x => x.name == "ERM.Desktop.MacOS.zip");
             
             if(asset != null && lastChanged.ToUniversalTime() < githubRelease.published_at.ToUniversalTime())
@@ -172,8 +169,6 @@ public partial class MainWindow : Window
                     
                     if(Directory.Exists(Path.Join(ermDir, "ERM Desktop.app")))
                     {
-                        Console.WriteLine("Setting permissions... DEBUG");
-                        
                         ProcessStartInfo startInfo = new ProcessStartInfo("chmod", $"+x \"{Path.Join(ermDir, "ERM Desktop.app", "Contents", "MacOS", "ERM Desktop")}\"")
                         {
                             RedirectStandardOutput = true
@@ -183,8 +178,6 @@ public partial class MainWindow : Window
                         process.StartInfo = startInfo;
                         process.Start();
                         await process.WaitForExitAsync();
-                        
-                        Console.WriteLine(await process.StandardOutput.ReadToEndAsync());
                     }
 
                     File.Delete(Path.Join(ermDir, "ERM.Desktop.MacOS.zip"));
