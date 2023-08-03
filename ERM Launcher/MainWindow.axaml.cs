@@ -138,6 +138,7 @@ public partial class MainWindow : Window
         }
         else if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
         {
+            Console.WriteLine("correct platform... DEBUG");
             Asset? asset = githubRelease.assets.Find(x => x.name == "ERM.Desktop.MacOS.zip");
             
             if(asset != null && lastChanged.ToUniversalTime() < githubRelease.published_at.ToUniversalTime())
@@ -171,6 +172,8 @@ public partial class MainWindow : Window
                     
                     if(File.Exists(Path.Join(ermDir, "ERM Desktop.app")))
                     {
+                        Console.WriteLine("Setting permissions... DEBUG");
+                        
                         ProcessStartInfo startInfo = new ProcessStartInfo("chmod", $"+x \"{Path.Join(ermDir, "ERM Desktop.app", "Contents", "MacOS", "ERM Desktop")}\"")
                         {
                             RedirectStandardOutput = true
