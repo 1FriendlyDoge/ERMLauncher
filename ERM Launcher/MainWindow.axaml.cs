@@ -77,8 +77,7 @@ public partial class MainWindow : Window
             if(File.Exists(Path.Join(ermDir, "version.txt")))
             {
                 lastChanged = DateTimeOffset
-                    .FromUnixTimeMilliseconds(long.Parse(await File.ReadAllTextAsync(Path.Join(ermDir, "version.txt"))))
-                    .ToUniversalTime().DateTime;
+                    .FromUnixTimeMilliseconds(long.Parse(await File.ReadAllTextAsync(Path.Join(ermDir, "version.txt")))).DateTime;
             }
         }
 
@@ -170,7 +169,7 @@ public partial class MainWindow : Window
                     
                     try
                     {
-                        await File.WriteAllTextAsync(Path.Join(ermDir, "version.txt"), DateTimeOffset.UtcNow.ToUnixTimeMilliseconds().ToString());
+                        await File.WriteAllTextAsync(Path.Join(ermDir, "version.txt"), DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString());
                     }
                     catch (Exception)
                     {
