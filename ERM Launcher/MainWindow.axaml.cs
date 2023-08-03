@@ -206,7 +206,7 @@ public partial class MainWindow : Window
         }
         else if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
         {
-            if(File.Exists(Path.Join(parentDir, "ERM Desktop.app")))
+            if(Directory.Exists(Path.Join(parentDir, "ERM Desktop.app")))
             {
                 Process.Start(new ProcessStartInfo("open", $"-a \"{Path.Join(parentDir, "ERM Desktop.app")}\""));
             }
