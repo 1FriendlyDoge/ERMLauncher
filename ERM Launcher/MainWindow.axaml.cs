@@ -91,7 +91,7 @@ public partial class MainWindow : Window
                 StatusIndicator.Text = "GitHub rate limit exceeded. Launching anyways.";
             });
             
-            await LaunchApp(ermDir);
+            LaunchApp(ermDir);
 
             await Task.Delay(3000);
             Environment.Exit(0);
@@ -191,34 +191,31 @@ public partial class MainWindow : Window
             StatusIndicator.Text = "Launching...";
         });
         
-        await LaunchApp(ermDir);
+        LaunchApp(ermDir);
         
         await Task.Delay(3000);
         
         Environment.Exit(0);
     }
     
-    public async Task LaunchApp(string parentDir)
+    public void LaunchApp(string parentDir)
     {
-        await Task.Run(() =>
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            if(File.Exists(Path.Join(parentDir, "ERM.Desktop.exe")))
             {
-                if(File.Exists(Path.Join(parentDir, "ERM.Desktop.exe")))
-                {
-                    Process.Start(new ProcessStartInfo(Path.Join(parentDir, "ERM.Desktop.exe"))
-                        { UseShellExecute = true });
-                }
+                Process.Start(new ProcessStartInfo(Path.Join(parentDir, "ERM.Desktop.exe"))
+                    { UseShellExecute = true });
             }
-            else if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+        }
+        else if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+        {
+            if(File.Exists(Path.Join(parentDir, "ERM Desktop.app")))
             {
-                if(File.Exists(Path.Join(parentDir, "ERM Desktop.app")))
-                {
-                    Process.Start(new ProcessStartInfo(Path.Join(parentDir, "ERM Desktop.app"))
-                        { UseShellExecute = true });
-                }
+                Process.Start(new ProcessStartInfo(Path.Join(parentDir, "ERM Desktop.app"))
+                    { UseShellExecute = true });
             }
-        });
+        }
     }
 
     private void Window_OnClosing(object? sender, CancelEventArgs e)
