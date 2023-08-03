@@ -174,13 +174,12 @@ public partial class MainWindow : Window
                             RedirectStandardOutput = true
                         };
 
-                        using (Process process = new Process())
-                        {
-                            process.StartInfo = startInfo;
-                            process.Start();
-                            await process.WaitForExitAsync();
-                            await process.StandardOutput.ReadToEndAsync();
-                        }
+                        Process process = new Process();
+                        process.StartInfo = startInfo;
+                        process.Start();
+                        await process.WaitForExitAsync();
+                        
+                        string debug = await process.StandardOutput.ReadToEndAsync();
                     }
 
                     File.Delete(Path.Join(ermDir, "ERM.Desktop.MacOS.zip"));
