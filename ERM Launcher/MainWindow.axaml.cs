@@ -170,7 +170,7 @@ public partial class MainWindow : Window
                         System.IO.Compression.ZipFile.ExtractToDirectory(Path.Join(ermDir, "ERM.Desktop.MacOS.zip"), ermDir, true);
                     });
                     
-                    if(File.Exists(Path.Join(ermDir, "ERM Desktop.app")))
+                    if(Directory.Exists(Path.Join(ermDir, "ERM Desktop.app")))
                     {
                         Console.WriteLine("Setting permissions... DEBUG");
                         
