@@ -76,7 +76,7 @@ public partial class MainWindow : Window
         {
             if(Directory.Exists(Path.Join(ermDir, "ERM Desktop.app")))
             {
-                lastChanged = Directory.GetLastWriteTimeUtc(Path.Join(ermDir, "ERM Desktop.app"));
+                lastChanged = File.GetLastWriteTimeUtc(Path.Join(ermDir, "ERM Desktop.app", "Contents", "MacOS", "ERM Desktop"));
             }
         }
 
