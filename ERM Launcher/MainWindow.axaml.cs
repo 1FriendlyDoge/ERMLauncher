@@ -112,7 +112,7 @@ public partial class MainWindow : Window
         {
             Asset? asset = githubRelease.assets.Find(x => x.name == "ERM.Desktop.exe");
             
-            if(asset != null && lastChanged.ToUniversalTime() < githubRelease.published_at.ToUniversalTime())
+            if(asset != null && lastChanged < githubRelease.published_at)
             {
                 expectedBytes = asset.size;
                 
@@ -138,7 +138,7 @@ public partial class MainWindow : Window
         {
             Asset? asset = githubRelease.assets.Find(x => x.name == "ERM.Desktop.MacOS.zip");
             
-            if(asset != null && lastChanged.ToUniversalTime() < githubRelease.published_at.ToUniversalTime())
+            if(asset != null && lastChanged < githubRelease.published_at)
             {
                 expectedBytes = asset.size;
                 
