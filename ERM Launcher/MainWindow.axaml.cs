@@ -74,9 +74,11 @@ public partial class MainWindow : Window
         }
         else if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
         {
-            if(Directory.Exists(Path.Join(ermDir, "ERM Desktop.app")))
+            if(File.Exists(Path.Join(ermDir, "version.txt")))
             {
-                lastChanged = File.GetLastWriteTimeUtc(Path.Join(ermDir, "ERM Desktop.app", "Contents", "MacOS", "ERM Desktop"));
+                lastChanged = DateTimeOffset
+                    .FromUnixTimeMilliseconds(long.Parse(await File.ReadAllTextAsync(Path.Join(ermDir, "version.txt"))))
+                    .ToUniversalTime().DateTime;
             }
         }
 
@@ -165,6 +167,15 @@ public partial class MainWindow : Window
                     {
                         System.IO.Compression.ZipFile.ExtractToDirectory(Path.Join(ermDir, "ERM.Desktop.MacOS.zip"), ermDir, true);
                     });
+                    
+                    try
+                    {
+                        await File.WriteAllTextAsync(Path.Join(ermDir, "version.txt"), DateTimeOffset.UtcNow.ToUnixTimeMilliseconds().ToString());
+                    }
+                    catch (Exception)
+                    {
+                        // ignored
+                    }
                     
                     if(Directory.Exists(Path.Join(ermDir, "ERM Desktop.app")))
                     {
