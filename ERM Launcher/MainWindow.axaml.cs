@@ -29,6 +29,8 @@ public partial class MainWindow : Window
         HttpClientHandler handler = new HttpClientHandler() { AllowAutoRedirect = true };
         ProgressMessageHandler progress = new ProgressMessageHandler(handler);
 
+        Console.WriteLine("Test");
+        
         progress.HttpReceiveProgress += (_, args) =>
         {
             double progressPercentage = args.ProgressPercentage;
@@ -179,7 +181,7 @@ public partial class MainWindow : Window
                         process.Start();
                         await process.WaitForExitAsync();
                         
-                        string debug = await process.StandardOutput.ReadToEndAsync();
+                        Console.WriteLine(await process.StandardOutput.ReadToEndAsync());
                     }
 
                     File.Delete(Path.Join(ermDir, "ERM.Desktop.MacOS.zip"));
