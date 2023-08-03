@@ -1,5 +1,6 @@
 ﻿using Avalonia;
 using System;
+using System.Diagnostics;
 using Avalonia.Svg.Skia;
 
 namespace ERM_Launcher;
@@ -10,6 +11,7 @@ class Program
     // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
     // yet and stuff might break.
     [STAThread]
+    [DebuggerStepThrough]
     public static void Main(string[] args) => BuildAvaloniaApp()
         .StartWithClassicDesktopLifetime(args);
 
