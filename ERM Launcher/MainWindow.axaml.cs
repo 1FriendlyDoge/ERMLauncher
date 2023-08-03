@@ -169,10 +169,7 @@ public partial class MainWindow : Window
                     
                     if(Directory.Exists(Path.Join(ermDir, "ERM Desktop.app")))
                     {
-                        ProcessStartInfo startInfo = new ProcessStartInfo("chmod", $"+x \"{Path.Join(ermDir, "ERM Desktop.app", "Contents", "MacOS", "ERM Desktop")}\"")
-                        {
-                            RedirectStandardOutput = true
-                        };
+                        ProcessStartInfo startInfo = new ProcessStartInfo("chmod", $"+x \"{Path.Join(ermDir, "ERM Desktop.app", "Contents", "MacOS", "ERM Desktop")}\"");
 
                         Process process = new Process();
                         process.StartInfo = startInfo;
@@ -204,16 +201,14 @@ public partial class MainWindow : Window
         {
             if(File.Exists(Path.Join(parentDir, "ERM.Desktop.exe")))
             {
-                Process.Start(new ProcessStartInfo(Path.Join(parentDir, "ERM.Desktop.exe"))
-                    { UseShellExecute = true });
+                Process.Start(new ProcessStartInfo(Path.Join(parentDir, "ERM.Desktop.exe")));
             }
         }
         else if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
         {
             if(File.Exists(Path.Join(parentDir, "ERM Desktop.app")))
             {
-                Process.Start(new ProcessStartInfo(Path.Join(parentDir, "ERM Desktop.app"))
-                    { UseShellExecute = true });
+                Process.Start(new ProcessStartInfo(Path.Join(parentDir, "ERM Desktop.app")));
             }
         }
     }
