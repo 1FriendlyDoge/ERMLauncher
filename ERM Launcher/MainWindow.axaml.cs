@@ -55,7 +55,7 @@ public partial class MainWindow : Window
         HttpClient downloadClient = new HttpClient(progress);
         fetchClient.DefaultRequestHeaders.Add("User-Agent", "request");
         
-        string filePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        string filePath = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
         string ermDir = Path.Join(filePath, "ERM");
 
         DateTime lastChanged = DateTimeOffset.FromUnixTimeSeconds(0).DateTime;
